@@ -1,6 +1,3 @@
-# from __future__ import print_function
-# %reset -f
-
 import pandas as pd
 import os
 import glob
@@ -20,9 +17,6 @@ import config_recurringspend
 from gcp_utility import download_table_from_gbq, upload_table_to_gbq
 # df = download_table_from_gbq(project_name, dataset_name, table_name)
 # upload_table_to_gbq(ndf, dataset_name, table_name)
-
-# pd.set_option("display.max_rows", 200)
-# pd.set_option("display.max_columns", 200)
 
 def return_dataframe_from_sheet(spreadsheet_id,sample_range):
     '''docstring for return_dataframe_from_sheet function'''
