@@ -5,7 +5,7 @@ import pickle
 import os.path
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import 
+from google.auth.transport.requests import Request
 
 import config_lifelogs
 from gcp_utility import download_table_from_gbq, upload_table_to_gbq#, return_dataframe_from_sheet
