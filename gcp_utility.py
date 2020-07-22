@@ -23,16 +23,3 @@ def upload_table_to_gbq(df, dataset_name, table_name):
     # Wait for the load job to complete.
     print('job complete')
     return job.result()
-
-# ###
-# # download table from google bigquery script_uploads dataset
-# project_name = 'peronal-data-projects'
-# dataset_name = 'script_uploads'
-# table_name = 'raw_twl_customer_table'
-# df = download_table_from_gbq(project_name, dataset_name, table_name)
-
-# ###
-# # upload dataframe to google bigquery script_uploads dataset
-# dataset_name = 'script_uploads'
-# table_name = 'raw_recurring_spend_tracking_sheet'
-# upload_table_to_gbq(ndf, dataset_name, table_name)
