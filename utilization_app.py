@@ -11,7 +11,8 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
 import config_lifelogs
-import lifelog
+import config_google
+from lifelog import life_log
 from gcp_utility import download_table_from_gbq, upload_table_to_gbq#, return_dataframe_from_sheet
 
 
@@ -32,14 +33,6 @@ def combine_like_cols(df):
     temp = pd.concat(group_vecs,axis=1)
     temp.columns = groups
     return temp.merge(df[[i for i in cols if '(' in i]],left_index=True,right_index=True)
-
-def calplot_funk(df,keycol):
-    '''docstring for calplot_funk function'''
-    fig,ax=calmap.calendarplot(df[keycol],
-                        fillcolor='grey',# linewidth=0,#cmap='RdYlGn',
-                        fig_kws=dict(figsize=(17,12)), subplot_kws={'title':keycol}, vmin=0)
-    fig.colorbar(ax[0].get_children()[1], ax=ax.ravel().tolist(), orientation='horizontal')
-    return #plt.show()
 
 def main():
     '''docstring for main function'''
@@ -62,9 +55,12 @@ def main():
         dfs.append(df)
     df = pd.concat(dfs,sort=False)
     df = df.fillna(0)
-    cols = list(df)
-    for col in cols:
-        calplot_funk(df,col)
+    
+    credential_path = config_google.gbq_credential_path
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
+    dataset_name = config_google.uploads_dataset_name
+    table_name = 'raw_lifelog_daycount'
+    upload_table_to_gbq(df, dataset_name, table_name)
 
 if __name__ == '__main__':
     main()
