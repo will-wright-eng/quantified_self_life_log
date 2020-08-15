@@ -7,7 +7,7 @@ Since I started manually recording in my lifelog in 2018 the category model has 
 
 ## Lifelog
 Example of 2020 logging sheet
-![sleep](https://github.com/william-cass-wright/quantified_self_life_log/blob/master/images/Sleep.png)
+![log_screen_shot](https://github.com/william-cass-wright/quantified_self_life_log/blob/master/images/log_screen_shot.png)
 
 ## Analyses
 ### PCA & K-Means Clustering EDA
