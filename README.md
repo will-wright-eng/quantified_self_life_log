@@ -7,6 +7,7 @@ Since I started manually recording in my lifelog in 2018 the category model has 
 
 ## Lifelog
 Example of 2020 logging sheet
+[Credit to u/backstreetskeeter](https://www.reddit.com/r/dataisbeautiful/comments/5lh6tc/every_hour_of_my_2016_charted_by_category_oc/)
 ![log_screen_shot](https://github.com/william-cass-wright/quantified_self_life_log/blob/master/images/log_screen_shot.png)
 
 ## Analyses
