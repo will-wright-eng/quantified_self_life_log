@@ -21,7 +21,7 @@ class life_log(object):
             self.run_analysis(self.spreadsheet_id,self.sample_range,self.mapping_table,self.grouping)
             
     def run_analysis(self, spreadsheet_id, sample_range, mapping_table, grouping):
-    	'''docstring for run_analysis function'''
+        '''docstring for run_analysis function'''
         df = self.return_dataframe_from_sheet(spreadsheet_id,sample_range)
         df_mapping_table = self.return_dataframe_from_sheet(spreadsheet_id,mapping_table)
         cols, noncols, cols0, cols1 = self.split_cols(df)
@@ -40,9 +40,9 @@ class life_log(object):
         # other options being 'secondary_group' or 'full_descriptor'
         
     def return_dataframe_from_sheet(self,spreadsheet_id,sample_range):
-    	'''docstring for return_dataframe_from_sheet function
-    	sample_range: string that indexes table range in gsheet (be sure to select only columns with non-null headers)
-    	'''
+        '''docstring for return_dataframe_from_sheet function
+        sample_range: string that indexes table range in gsheet (be sure to select only columns with non-null headers)
+        '''
         # If modifying these scopes, delete the file token.pickle.
         SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
         creds = None
@@ -76,7 +76,7 @@ class life_log(object):
         return df
 
     def split_cols(self, df):
-    	'''docstring for split_cols function'''
+        '''docstring for split_cols function'''
         # create col lists for components of dataframe: category model, dr
         cols = []
         noncols = []
@@ -93,7 +93,7 @@ class life_log(object):
         return cols, noncols, cols0, cols1
     
     def clean_dataframe(self, df, df_mapping_table, cols, grouping):
-    	'''docstring for clean_dataframe function'''
+        '''docstring for clean_dataframe function'''
         # trim down imported dataframe and set Date as index
         ndf = df[cols+['Date']]
         ndf = ndf.set_index('Date')
@@ -121,7 +121,7 @@ class life_log(object):
         return df, df0
 
     def process_substance_cols(self, df, cols0):
-    	'''docstring for process_substance_cols function'''
+        '''docstring for process_substance_cols function'''
         # trim down imported dataframe and set Date as index
         ndf = df[cols0+['Date']]
         ndf = ndf.set_index('Date')
@@ -135,3 +135,5 @@ class life_log(object):
         df1.columns = list(ndf)
         df1.index = ndf.index
         return df1
+    
+    

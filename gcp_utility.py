@@ -1,17 +1,20 @@
 import pandas as pd
 import pickle
+from google.cloud import bigquery
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import 
+from google.auth.transport.requests import Request
 
 def download_table_from_gbq(project_name, dataset_name, table_name):
-    '''docstring for download_table_from_gbq'''
+    '''
+    download_table_from_gbq(project_name, dataset_name, table_name)
+    project_name: bq project
+    dataset_name: bq dataset
+    table_name: bq table
+    '''
     # https://cloud.google.com/bigquery/docs/pandas-gbq-migration
     client = bigquery.Client()
-    sql = """
-        SELECT *
-        FROM `{project}.{dataset}.{table}`
-        """
+    sql = """SELECT * FROM `{project}.{dataset}.{table}`"""
     query = sql.format(project=project_name, dataset=dataset_name, table=table_name)
     # Run a Standard SQL query using the environment's default project
     df = client.query(sql).to_dataframe()
