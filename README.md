@@ -12,7 +12,7 @@ Example of 2020 logging sheet
 ## Analyses
 ### PCA & K-Means Clustering EDA
 K-means clustering on dimensionally reduced daily sums
-![kmeans](https://github.com/william-cass-wright/quantified_self_life_log/blob/master/images/kmeans.gif)
+![kmeans](https://github.com/william-cass-wright/quantified_self_life_log/blob/master/images/kmeans.gif)  
 Tableau Dashboard
 ![tableau_snap_shot](https://github.com/william-cass-wright/quantified_self_life_log/blob/master/images/tableau_snap_shot.png)
 ### Calendar plots
