@@ -5,6 +5,7 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
+
 def download_table_from_gbq(project_name, dataset_name, table_name):
     '''
     download_table_from_gbq(project_name, dataset_name, table_name)
@@ -15,7 +16,9 @@ def download_table_from_gbq(project_name, dataset_name, table_name):
     # https://cloud.google.com/bigquery/docs/pandas-gbq-migration
     client = bigquery.Client()
     sql = """SELECT * FROM `{project}.{dataset}.{table}`"""
-    query = sql.format(project=project_name, dataset=dataset_name, table=table_name)
+    query = sql.format(project=project_name,
+                       dataset=dataset_name,
+                       table=table_name)
     # Run a Standard SQL query using the environment's default project
     df = client.query(sql).to_dataframe()
     # Run a Standard SQL query with the project set explicitly
@@ -23,17 +26,19 @@ def download_table_from_gbq(project_name, dataset_name, table_name):
     df = client.query(sql, project=project_id).to_dataframe()
     return df
 
+
 def upload_table_to_gbq(df, dataset_name, table_name):
     '''docstring for upload_table_to_gbq'''
     #https://cloud.google.com/bigquery/docs/pandas-gbq-migration
     client = bigquery.Client()
-    table_id = dataset_name+'.'+table_name
+    table_id = dataset_name + '.' + table_name
     job = client.load_table_from_dataframe(df, table_id)
     # Wait for the load job to complete.
     print('job complete')
     return job.result()
 
-def return_dataframe_from_sheet(self,spreadsheet_id,sample_range):
+
+def return_dataframe_from_sheet(self, spreadsheet_id, sample_range):
     '''docstring for return_dataframe_from_sheet function
     sample_range: string that indexes table range in gsheet (be sure to select only columns with non-null headers)
     '''
@@ -60,11 +65,12 @@ def return_dataframe_from_sheet(self,spreadsheet_id,sample_range):
     service = build('sheets', 'v4', credentials=creds)
     # Call the Sheets API
     sheet = service.spreadsheets()
-    result = sheet.values().get(spreadsheetId=spreadsheet_id,range=sample_range).execute()
+    result = sheet.values().get(spreadsheetId=spreadsheet_id,
+                                range=sample_range).execute()
     values = result.get('values', [])
     ###
     df = pd.DataFrame(values)
-    new_header = df.iloc[0] #grab the first row for the header
-    df = df[1:] #take the data less the header row
-    df.columns = new_header #set the header row as the df header
+    new_header = df.iloc[0]  #grab the first row for the header
+    df = df[1:]  #take the data less the header row
+    df.columns = new_header  #set the header row as the df header
     return df
