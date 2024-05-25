@@ -1,5 +1,3 @@
-** project in progress **
-
 # Life Log Project
 Originally the aim of this project was directed at understanding how much of my time I was putting into my primary job as well as the startup I was working with remotely, in an attempt to better manage my time, but it turned into something wholely different. The quantified self community also referrs to this type of thing as a data journal. 
 
